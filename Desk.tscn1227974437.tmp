@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3rm07s4x32g1"]
+
+[ext_resource type="Script" uid="uid://cdsdrvoen8ypb" path="res://Desk.gd" id="1_kv1ut"]
+[ext_resource type="Script" uid="uid://c75q6vldg7hpa" path="res://timer.gd" id="2_0raqs"]
+[ext_resource type="PackedScene" uid="uid://83blsqivedmm" path="res://ant.tscn" id="3_ihjj6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0raqs"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_kv1ut")
+
+[node name="Clicker" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 532.0
+offset_top = 321.0
+offset_right = 609.0
+offset_bottom = 352.0
+text = "Count +1"
+
+[node name="AntCount" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 551.0
+offset_top = 256.0
+offset_right = 591.0
+offset_bottom = 279.0
+text = "Jobs:"
+
+[node name="Upgrade" type="Button" parent="."]
+offset_left = 302.0
+offset_top = 318.0
+offset_right = 377.0
+offset_bottom = 349.0
+text = "Upgrade"
+
+[node name="UpgradeCost" type="Label" parent="Upgrade"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -26.0
+offset_top = -62.0
+offset_right = 102.0
+offset_bottom = -39.0
+text = "Cost to upgrade:"
+
+[node name="UpgradeStatus" type="Label" parent="Upgrade"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -16.0
+offset_top = 73.0
+offset_right = 101.0
+offset_bottom = 96.0
+text = "upgrade status"
+
+[node name="Idle" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 761.0
+offset_top = 316.0
+offset_right = 887.0
+offset_bottom = 347.0
+text = "Buy idle"
+
+[node name="IdleCost" type="Label" parent="Idle"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -19.0
+offset_top = -63.0
+offset_right = 171.0
+offset_bottom = -40.0
+text = "Generating X per second"
+
+[node name="IdleStatus" type="Label" parent="Idle"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 74.0
+offset_right = 104.0
+offset_bottom = 97.0
+text = "idle status"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+script = ExtResource("2_0raqs")
+
+[node name="Ants" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(551, 256)
+
+[node name="Ant" parent="Ants" instance=ExtResource("3_ihjj6")]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(569, 649)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("WorldBoundaryShape2D_0raqs")
+
+[connection signal="pressed" from="Clicker" to="." method="_on_clicker_pressed"]
+[connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="pressed" from="Idle" to="." method="_on_idle_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
