@@ -1,41 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3rm07s4x32g1"]
+[gd_scene load_steps=7 format=3 uid="uid://c3rm07s4x32g1"]
 
 [ext_resource type="Script" uid="uid://cdsdrvoen8ypb" path="res://Desk.gd" id="1_kv1ut"]
 [ext_resource type="Script" uid="uid://c75q6vldg7hpa" path="res://timer.gd" id="2_0raqs"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0raqs"]
-friction = 0.25
-bounce = 0.1
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0raqs"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihjj6"]
-size = Vector2(3.61047, 152.584)
+[ext_resource type="Texture2D" uid="uid://h4xvxee6bly3" path="res://assets/sprites/background.png" id="2_ihjj6"]
+[ext_resource type="PackedScene" uid="uid://bp2fuetubenyg" path="res://insects/nav_ant.tscn" id="4_vypyt"]
+[ext_resource type="Texture2D" uid="uid://jpf8unsprasp" path="res://assets/sprites/leaf.png" id="5_g3mx1"]
+[ext_resource type="PackedScene" uid="uid://cb1l1drvdtd21" path="res://shop.tscn" id="6_b6rpr"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_kv1ut")
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("2_ihjj6")
+flip_h = true
+
+[node name="Shop" parent="." instance=ExtResource("6_b6rpr")]
+
 [node name="Clicker" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 532.0
-offset_top = 321.0
-offset_right = 609.0
-offset_bottom = 352.0
+offset_left = 536.0
+offset_top = 79.0
+offset_right = 613.0
+offset_bottom = 110.0
 text = "Count +1"
 
-[node name="AntCount" type="Label" parent="."]
+[node name="ResourceCount" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 551.0
-offset_top = 256.0
-offset_right = 591.0
-offset_bottom = 279.0
-text = "Jobs:"
+offset_left = 549.0
+offset_top = 29.0
+offset_right = 589.0
+offset_bottom = 52.0
+text = "Ants"
 
 [node name="Upgrade" type="Button" parent="."]
-offset_left = 302.0
-offset_top = 318.0
-offset_right = 377.0
-offset_bottom = 349.0
+offset_left = 61.0
+offset_top = 355.0
+offset_right = 136.0
+offset_bottom = 386.0
 text = "Upgrade"
 
 [node name="UpgradeCost" type="Label" parent="Upgrade"]
@@ -58,10 +61,10 @@ text = "upgrade status"
 
 [node name="Idle" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 761.0
-offset_top = 316.0
-offset_right = 887.0
-offset_bottom = 347.0
+offset_left = 1063.0
+offset_top = 374.0
+offset_right = 1189.0
+offset_bottom = 405.0
 text = "Buy idle"
 
 [node name="IdleCost" type="Label" parent="Idle"]
@@ -87,50 +90,24 @@ autostart = true
 script = ExtResource("2_0raqs")
 
 [node name="Ants" type="Node2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(551, 256)
 
-[node name="PlayArea" type="Node2D" parent="."]
+[node name="NavAnt" parent="Ants" instance=ExtResource("4_vypyt")]
+move_speed = 300.0
+loop_path = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(573, 64)
-physics_material_override = SubResource("PhysicsMaterial_0raqs")
+[node name="Sprite2D" parent="Ants/NavAnt/CharacterBody2D" index="0"]
+flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D"]
-position = Vector2(28, 1018)
-scale = Vector2(155.397, 37.1124)
-shape = SubResource("RectangleShape2D_0raqs")
+[node name="Path2D" parent="Ants/NavAnt" index="1"]
+position = Vector2(86, 585)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(575, 5)
-physics_material_override = SubResource("PhysicsMaterial_0raqs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D2"]
-position = Vector2(72, -248)
-scale = Vector2(84.1597, 24.2811)
-shape = SubResource("RectangleShape2D_0raqs")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(2, 280)
-scale = Vector2(0.568825, 3.63989)
-physics_material_override = SubResource("PhysicsMaterial_0raqs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D3"]
-position = Vector2(-766.492, -1.6484)
-scale = Vector2(423.055, 2.49068)
-shape = SubResource("RectangleShape2D_ihjj6")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="PlayArea"]
-position = Vector2(1151, 275)
-scale = Vector2(0.568825, 3.63989)
-physics_material_override = SubResource("PhysicsMaterial_0raqs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D4"]
-position = Vector2(1139.19, -2.74734)
-scale = Vector2(500.611, 2.58494)
-shape = SubResource("RectangleShape2D_ihjj6")
+[node name="Sprite2D" type="Sprite2D" parent="Ants/NavAnt/Path2D/AntPath" index="0"]
+visible = false
+texture = ExtResource("5_g3mx1")
 
 [connection signal="pressed" from="Clicker" to="." method="_on_clicker_pressed"]
 [connection signal="pressed" from="Upgrade" to="." method="_on_upgrade_pressed"]
 [connection signal="pressed" from="Idle" to="." method="_on_idle_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Ants/NavAnt"]

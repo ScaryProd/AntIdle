@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1hcy1cwiux10"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_egoly"]
+friction = 0.25
+bounce = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a18bm"]
+size = Vector2(600, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxvd1"]
+size = Vector2(200, 600)
+
+[node name="Nest" type="Node2D"]
+
+[node name="PlayArea" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlayArea"]
+position = Vector2(0, 300)
+physics_material_override = SubResource("PhysicsMaterial_egoly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D"]
+shape = SubResource("RectangleShape2D_a18bm")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="PlayArea"]
+position = Vector2(0, -300)
+physics_material_override = SubResource("PhysicsMaterial_egoly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_a18bm")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="PlayArea"]
+physics_material_override = SubResource("PhysicsMaterial_egoly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D3"]
+position = Vector2(-300, 0)
+shape = SubResource("RectangleShape2D_vxvd1")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="PlayArea"]
+physics_material_override = SubResource("PhysicsMaterial_egoly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/StaticBody2D4"]
+position = Vector2(300, 0)
+shape = SubResource("RectangleShape2D_vxvd1")

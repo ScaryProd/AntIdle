@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b76lhoph6ldof"]
+
+[ext_resource type="Texture2D" uid="uid://jpf8unsprasp" path="res://assets/sprites/leaf.png" id="1_p3lty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3lty"]
+size = Vector2(300, 300)
+
+[node name="Leaf" type="Node2D"]
+
+[node name="Leaf Sprite" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_p3lty")
+
+[node name="CharacterBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_p3lty")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb1l1drvdtd21"]
+
+[ext_resource type="Script" uid="uid://dxaf6vmobwicv" path="res://shop.gd" id="1_e7rdd"]
+[ext_resource type="Texture2D" uid="uid://p2gav48diehn" path="res://assets/sprites/ant.png" id="1_viryw"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_e7rdd"]
+diffuse_texture = ExtResource("1_viryw")
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_e7rdd")
+
+[node name="ItemList" type="ItemList" parent="."]
+unique_name_in_owner = true
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 90.0
+offset_bottom = 90.0
+item_count = 1
+item_0/text = "Ants"
+item_0/icon = SubResource("CanvasTexture_e7rdd")

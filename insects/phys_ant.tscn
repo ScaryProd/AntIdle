@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://83blsqivedmm"]
 
-[ext_resource type="Script" uid="uid://c2plxpn2gyif0" path="res://ant.gd" id="1_5tacl"]
-[ext_resource type="Texture2D" uid="uid://p2gav48diehn" path="res://assets/sprites/ant.png" id="1_oav7h"]
+[ext_resource type="Script" uid="uid://c2plxpn2gyif0" path="res://insects/ant.gd" id="1_15f2g"]
+[ext_resource type="Texture2D" uid="uid://bfdg5x0iom5ha" path="res://assets/sprites/ant_white.png" id="2_j80rt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oav7h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5tacl"]
 
-[node name="Ant" type="Node2D"]
-script = ExtResource("1_5tacl")
+[node name="PhysAnt" type="Node2D"]
+script = ExtResource("1_15f2g")
 
 [node name="AntRigidBody" type="RigidBody2D" parent="."]
 collision_layer = 0
@@ -16,12 +16,10 @@ physics_material_override = SubResource("PhysicsMaterial_oav7h")
 lock_rotation = true
 
 [node name="AntCollision" type="CollisionShape2D" parent="AntRigidBody"]
-scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_5tacl")
 
 [node name="AntSprite" type="Sprite2D" parent="AntRigidBody"]
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("1_oav7h")
+texture = ExtResource("2_j80rt")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
