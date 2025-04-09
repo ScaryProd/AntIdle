@@ -4,7 +4,7 @@ var count = 0.0;
 var mult = 1;
 var idle = 0;
 var generatingCost = 1
-var antScene = preload("res://nav_ant.tscn")
+var antScene = preload("res://insects/nav_ant.tscn")
 
 
 func _on_clicker_pressed() -> void:
